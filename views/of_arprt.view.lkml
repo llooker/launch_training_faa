@@ -12,6 +12,12 @@ view: of_arprt {
     sql: ${TABLE}."ALTITUDE" ;;
   }
 
+  measure: avg_altitude {
+    type: average
+    sql: ${altitude} ;;
+    drill_fields: [Airport_ID, name, country]
+  }
+
   dimension: city {
     type: string
     sql: ${TABLE}."CITY" ;;

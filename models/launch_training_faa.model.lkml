@@ -48,7 +48,7 @@ explore: of_arln {
 }
 
 explore: of_arprt {
-  hidden: yes
+label: "Airports"
 }
 
 explore: of_planes {

@@ -538,7 +538,7 @@ view: bts_delays {
 
 
   dimension: flights {
-    hidden: no
+    hidden: yes  #Data have 1 flight per row
     type: number
     sql: ${TABLE}."FLIGHTS" ;;
   }
@@ -740,11 +740,11 @@ view: bts_delays {
     description: "minutes"
   }
 
-  measure: cnt_flights {
-    label: "Total Flights"
-    type: sum
-    sql: ${flights} ;;
-  }
+  # measure: cnt_flights {
+  #   label: "Total Flights"   There is only one flight per row - so count works as the total flight
+  #   type: sum
+  #   sql: ${flights} ;;
+  # }
   measure: sum_delay_total {
     label: "Delay Total"
     type: sum
