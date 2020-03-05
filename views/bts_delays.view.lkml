@@ -128,8 +128,32 @@ view: bts_delays {
 
   dimension: depdel15 {
     group_label: "Delay Info"
+    hidden: yes
     type: string
     sql: ${TABLE}."DEPDEL15" ;;
+  }
+
+  dimension: is_flight_delayed_departure {
+    description: "Is the flight delayed by more than 15 minutes on departure"
+    group_label: "Delay Info"
+    type: yesno
+    sql:  ${depdel15} = '1.0' ;;
+  }
+
+  measure: count_of_delayed_departure_flights {
+    description: "count of flights delayed by more than 15 minutes on departure"
+    type: count
+    filters: {
+      field: is_flight_delayed_departure
+      value: "yes"
+    }
+  }
+
+  measure: percentage_flights_delayed_on_departure {
+    description: "Percent of flights delayed by more than 15 minutes on departure"
+    type: number
+    sql: ${count_of_delayed_departure_flights}/nullif(${count},0) ;;
+    value_format_name: percent_1
   }
 
   dimension: depdelay {

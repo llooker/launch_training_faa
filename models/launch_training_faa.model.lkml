@@ -1,3 +1,4 @@
+
 connection: "faa_demo_warren"
 
 # include all the views
@@ -19,14 +20,14 @@ explore: bts_delays {
     sql_on: ${bts_delays.origin} = ${origin.iata};;
     relationship: many_to_one
     type: left_outer
-    fields: [origin.GEO_LOC, origin.name]
+    fields: [origin.GEO_LOC, origin.name, origin.country]
   }
   join: destination {
     from: of_arprt
     sql_on: ${bts_delays.dest} = ${destination.iata} ;;
     relationship: many_to_one
     type: left_outer
-    fields: [destination.GEO_LOC, destination.name]
+    fields: [destination.GEO_LOC, destination.name, destination.country]
   }
 
 
