@@ -1,4 +1,4 @@
-connection: "snowflake_training"
+connection: "faa_demo_warren"
 
 # include all the views
 include: "*.view"

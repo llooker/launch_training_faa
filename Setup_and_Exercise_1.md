@@ -29,4 +29,6 @@ LookML is a Markup Language for SQL.  It abstracts away many of the complexities
 - Build a New LookML Project
 - You might have to switch to development mode!  That's OK! LookML built with git integration in mind, so any changes (including new projects) need to be done from a developer branch.
 - Give your project a name, how about: `yourname_faa`
-- You have a number of options for a starting point - Looker can generate a model from the information in the database, you can give Looker a SQL query and it can generate a model
+- You have a number of options for a starting point - Looker can generate a model from the information in the database, you can give Looker a SQL query and it can generate a model.  Both of these are good when working with brand new data sets.  In this case, we know what the data schema is so we can go ahead and select Clone Public Git Repository
+- Enter `git://github.com/llooker/launch_training_faa.git`
+- Et Voila - you have a LookML Project!
