@@ -1,7 +1,7 @@
 connection: "faa_demo_warren"
 
 # include all the views
-include: "*.view"
+include: "/views/*.view"
 
 datagroup: poc_flights_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
