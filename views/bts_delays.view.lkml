@@ -1,6 +1,7 @@
 view: bts_delays {
   view_label: "Flight Info"
   sql_table_name: PUBLIC.BTS_DELAYS ;;
+  drill_fields: [reporting_airline, crsarrstring, crsdepstring, arrdelay, depdelay, origin.name, destination.name]
 
 
   dimension: finkey {
@@ -60,6 +61,7 @@ view: bts_delays {
   dimension: arrstringblk {
     group_label: "Arival Info"
     type: string
+    description: "Hourly block of Arrival time"
     sql: ${TABLE}."ARRSTRINGBLK" ;;
   }
 
@@ -86,11 +88,15 @@ view: bts_delays {
   }
 
   dimension: crsarrstring {
+    label: "Arrival Time"
+    group_label: "Arival Info"
     type: string
     sql: ${TABLE}."CRSARRSTRING" ;;
   }
 
   dimension: crsdepstring {
+    label: "Departure Time"
+    group_label: "Departure Info"
     type: string
     sql: ${TABLE}."CRSDEPSTRING" ;;
   }
@@ -147,6 +153,7 @@ view: bts_delays {
   dimension: depstringblk {
     group_label: "Departure Delay Info"
     type: string
+    description: "Hourly block of departure time"
     sql: ${TABLE}."DEPSTRINGBLK" ;;
   }
 
@@ -184,6 +191,7 @@ view: bts_delays {
 
   dimension: deststate {
     group_label: "Destination"
+    map_layer_name: us_states
     type: string
     sql: ${TABLE}."DESTSTATE" ;;
   }
@@ -196,6 +204,7 @@ view: bts_delays {
 
   dimension: deststatename {
     group_label: "Destination"
+    map_layer_name: us_states
     type: string
     sql: ${TABLE}."DESTSTATENAME" ;;
   }
@@ -218,8 +227,8 @@ view: bts_delays {
   ### Distance Info ###
 
   dimension: distance {
-    type: string
-    sql: ${TABLE}."DISTANCE" ;;
+    type: number
+    sql: ${TABLE}."DISTANCE"::DECIMAL ;;
   }
 
   dimension: distancegroup {
@@ -619,6 +628,7 @@ view: bts_delays {
 
   dimension: originstatename {
     group_label: "Origin"
+    map_layer_name: us_states
     type: string
     sql: ${TABLE}."ORIGINSTATENAME" ;;
   }
@@ -738,6 +748,13 @@ view: bts_delays {
     type: sum
     sql: ${weatherdelay} ;;
     description: "minutes"
+  }
+
+  measure: avg_weather_delay {
+    type: average
+    sql: ${weatherdelay} ;;
+    description: "minutes"
+    value_format_name: decimal_1
   }
 
   # measure: cnt_flights {
