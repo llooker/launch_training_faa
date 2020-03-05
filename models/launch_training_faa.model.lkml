@@ -19,14 +19,14 @@ explore: bts_delays {
     sql_on: ${bts_delays.origin} = ${origin.iata};;
     relationship: many_to_one
     type: left_outer
-    fields: [origin.GEO_LOC]
+    fields: [origin.GEO_LOC, origin.name]
   }
   join: destination {
     from: of_arprt
     sql_on: ${bts_delays.dest} = ${destination.iata} ;;
     relationship: many_to_one
     type: left_outer
-    fields: [destination.GEO_LOC]
+    fields: [destination.GEO_LOC, destination.name]
   }
 
 
